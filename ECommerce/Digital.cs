@@ -4,15 +4,15 @@ using System.Text;
 
 namespace ECommerce;
 
-public class Digital
+public class Digital : IProduct
 {
     public int Id { get; set; }
-    public string Name { get; set; }
+    public string Name { get; set; } = string.Empty;
     public decimal Price { get; set; }
-    public string Description { get; set; }
-    public string Category { get; set; }
+    public string Description { get; set; } = string.Empty;
+    public string Category { get; set; } = string.Empty;
     public decimal Weight { get; set; }
 
-    public string Format { get; set; }
-    public string Url { get; set; }
+    public string Format { get; set; } = string.Empty;
+    public string Url { get; set; } = string.Empty;
 }

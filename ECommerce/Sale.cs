@@ -9,23 +9,24 @@ public class Sale
     public int Id { get; set; }
     public int Num { get; set; }
     public string DocClient { get; set; } = "";
-    public List<SaleDetail> Details { get; set; }
+    public List<SaleDetail> PurchasedItems { get; set; } = new();
     public DateTime date;
-    public decimal Total { get; set; }
+    public decimal Total => PurchasedItems.Sum(i => i.Subtotal);
 
 
-    public Sale(int num, string docCliente, List<SaleDetail> details, decimal total)
+    public Sale(int num, string docCliente, List<SaleDetail> purchasedItems, decimal total)
     {
-        Id = 123;
+        Id = Random.Shared.Next();
         Num = num;
         DocClient = docCliente;
-        Details = details;
-        Total = total;
-
+        PurchasedItems = purchasedItems;
     }
 
-    public AddProduct(Producto producto)
-    { return }
+    public void AddProduct(IProduct product, int quantity)
+    {
+        PurchasedItems = PurchasedItems.Append(new SaleDetail(product, quantity)).ToList();
+        //retornar algo? paradigma funcional creo
+    }
 
 
 

@@ -7,17 +7,26 @@ namespace ECommerce;
 
 public class SaleDetail
 {
-    public string Description { get; set; }
-    public decimal Price { get; set; }
-    public int Amount { get; set; }
-    public decimal Subtotal { get; set; }
+    public IProduct Product { get; set; }
+    public string ProductName { get; set; }
+    public string ProductDetails { get; set; }
+    public decimal ProductPrice { get; set; }
+    public string ProductDescrip { get; set; }
+    public int Quantity { get; set; }
+    public decimal Subtotal => ProductPrice * Quantity;
 
-    public SaleDetail(string description, int price, int amount, decimal subtotal)
+    public SaleDetail(IProduct product, int quantity)
     {
-        Description = description;
-        Price = price;
-        Amount = amount;
-        Subtotal = subtotal;
+        if (quantity <= 0)
+            throw new ArgumentException("La cantidad debe ser mayor que cero.");
+
+        Product = product;
+        ProductName = product.Name;
+        ProductDescrip = product.Description;
+        ProductPrice = product.Price; 
+        Quantity = quantity;
+
+        ProductDetails = $"Producto: {ProductName}, Precio Unitario: {ProductPrice}, Cantidad {Quantity}";
 
     }
 
