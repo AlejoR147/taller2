@@ -42,7 +42,7 @@ namespace DesktopApp
             // 
             title.AutoSize = true;
             title.Font = new Font("Segoe Script", 20F);
-            title.Location = new Point(215, 93);
+            title.Location = new Point(215, 105);
             title.Name = "title";
             title.Size = new Size(322, 42);
             title.TabIndex = 1;
@@ -53,10 +53,10 @@ namespace DesktopApp
             listView1.Columns.AddRange(new ColumnHeader[] { nameColumn, priceColumn, stockColumn });
             listView1.FullRowSelect = true;
             listView1.GridLines = true;
-            listView1.Location = new Point(127, 217);
+            listView1.Location = new Point(127, 246);
             listView1.MultiSelect = false;
             listView1.Name = "listView1";
-            listView1.Size = new Size(471, 187);
+            listView1.Size = new Size(471, 211);
             listView1.TabIndex = 2;
             listView1.UseCompatibleStateImageBehavior = false;
             listView1.View = View.Details;
@@ -78,9 +78,9 @@ namespace DesktopApp
             // 
             // removeBtn
             // 
-            removeBtn.Location = new Point(523, 188);
+            removeBtn.Location = new Point(523, 213);
             removeBtn.Name = "removeBtn";
-            removeBtn.Size = new Size(75, 23);
+            removeBtn.Size = new Size(75, 26);
             removeBtn.TabIndex = 3;
             removeBtn.Text = "Eliminar";
             removeBtn.UseVisualStyleBackColor = true;
@@ -88,9 +88,9 @@ namespace DesktopApp
             // 
             // editBtn
             // 
-            editBtn.Location = new Point(442, 188);
+            editBtn.Location = new Point(442, 213);
             editBtn.Name = "editBtn";
-            editBtn.Size = new Size(75, 23);
+            editBtn.Size = new Size(75, 26);
             editBtn.TabIndex = 4;
             editBtn.Text = "Editar";
             editBtn.UseVisualStyleBackColor = true;
@@ -98,9 +98,9 @@ namespace DesktopApp
             // 
             // creationBtn
             // 
-            creationBtn.Location = new Point(361, 188);
+            creationBtn.Location = new Point(361, 213);
             creationBtn.Name = "creationBtn";
-            creationBtn.Size = new Size(75, 23);
+            creationBtn.Size = new Size(75, 26);
             creationBtn.TabIndex = 5;
             creationBtn.Text = "Crear";
             creationBtn.UseVisualStyleBackColor = true;
@@ -108,9 +108,9 @@ namespace DesktopApp
             // 
             // ProductsWiew
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(7F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(717, 572);
+            ClientSize = new Size(717, 648);
             Controls.Add(creationBtn);
             Controls.Add(editBtn);
             Controls.Add(removeBtn);

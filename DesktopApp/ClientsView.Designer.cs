@@ -29,23 +29,70 @@ namespace DesktopApp
         private void InitializeComponent()
         {
             title = new Label();
+            verClientes = new ListView();
+            DeleteBtn = new Button();
+            EditBtn = new Button();
+            CreateBtn = new Button();
             SuspendLayout();
             // 
             // title
             // 
             title.AutoSize = true;
             title.Font = new Font("Segoe Script", 20F);
-            title.Location = new Point(215, 93);
+            title.Location = new Point(208, 118);
             title.Name = "title";
-            title.Size = new Size(300, 42);
+            title.Size = new Size(292, 42);
             title.TabIndex = 1;
             title.Text = "Gestión de Clientes";
             // 
+            // verClientes
+            // 
+            verClientes.Location = new Point(60, 266);
+            verClientes.Name = "verClientes";
+            verClientes.Size = new Size(590, 213);
+            verClientes.TabIndex = 2;
+            verClientes.UseCompatibleStateImageBehavior = false;
+            // 
+            // DeleteBtn
+            // 
+            DeleteBtn.Cursor = Cursors.No;
+            DeleteBtn.Location = new Point(413, 224);
+            DeleteBtn.Name = "DeleteBtn";
+            DeleteBtn.Size = new Size(75, 23);
+            DeleteBtn.TabIndex = 3;
+            DeleteBtn.Text = "Elliminar";
+            DeleteBtn.UseVisualStyleBackColor = true;
+            DeleteBtn.Click += DeleteClient;
+            // 
+            // EditBtn
+            // 
+            EditBtn.Location = new Point(494, 224);
+            EditBtn.Name = "EditBtn";
+            EditBtn.Size = new Size(75, 23);
+            EditBtn.TabIndex = 4;
+            EditBtn.Text = "Editar";
+            EditBtn.UseVisualStyleBackColor = true;
+            EditBtn.Click += UpdateClient;
+            // 
+            // CreateBtn
+            // 
+            CreateBtn.Location = new Point(575, 224);
+            CreateBtn.Name = "CreateBtn";
+            CreateBtn.Size = new Size(75, 23);
+            CreateBtn.TabIndex = 5;
+            CreateBtn.Text = "Agregar";
+            CreateBtn.UseVisualStyleBackColor = true;
+            CreateBtn.Click += CreateClient;
+            // 
             // ClientsView
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(7F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(717, 572);
+            ClientSize = new Size(717, 648);
+            Controls.Add(CreateBtn);
+            Controls.Add(EditBtn);
+            Controls.Add(DeleteBtn);
+            Controls.Add(verClientes);
             Controls.Add(title);
             Name = "ClientsView";
             Text = "ECommerce";
@@ -56,5 +103,9 @@ namespace DesktopApp
         #endregion
 
         private Label title;
+        private ListView verClientes;
+        private Button DeleteBtn;
+        private Button EditBtn;
+        private Button CreateBtn;
     }
 }
