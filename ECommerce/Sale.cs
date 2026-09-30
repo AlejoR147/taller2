@@ -6,17 +6,19 @@ namespace ECommerce;
 
 public class Sale
 {
-    public int Id { get; set; }
+    public int Id { get; set; } = Random.Shared.Next();
     public int Num { get; set; }
-    public string DocClient { get; set; } = "";
+    public string DocClient { get; set; } = string.Empty;
     public List<SaleDetail> PurchasedItems { get; set; } = new();
     public DateTime date;
     public decimal Total => PurchasedItems.Sum(i => i.Subtotal);
 
-
+    public Sale()
+    {
+        
+    }
     public Sale(int num, string docCliente, List<SaleDetail> purchasedItems, decimal total)
     {
-        Id = Random.Shared.Next();
         Num = num;
         DocClient = docCliente;
         PurchasedItems = purchasedItems;
@@ -27,7 +29,4 @@ public class Sale
         PurchasedItems = PurchasedItems.Append(new SaleDetail(product, quantity)).ToList();
         //retornar algo? paradigma funcional creo
     }
-
-
-
 }

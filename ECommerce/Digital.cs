@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace ECommerce;
-
+﻿namespace ECommerce;
 public class Digital : IProduct
 {
+    //Requeridos por contrato
     public int Id { get; set; }
     public string Name { get; set; } = string.Empty;
     public decimal Price { get; set; }
@@ -13,6 +9,7 @@ public class Digital : IProduct
     public string Category { get; set; } = string.Empty;
     public decimal Weight { get; set; }
 
+    //Propios
     public string Format { get; set; } = string.Empty;
     public string Url { get; set; } = string.Empty;
 }
