@@ -62,7 +62,7 @@ namespace DesktopApp
             DeleteBtn.TabIndex = 3;
             DeleteBtn.Text = "Elliminar";
             DeleteBtn.UseVisualStyleBackColor = true;
-            DeleteBtn.Click += DeleteCliente;
+            DeleteBtn.Click += DeleteClient;
             // 
             // EditBtn
             // 
@@ -72,7 +72,7 @@ namespace DesktopApp
             EditBtn.TabIndex = 4;
             EditBtn.Text = "Editar";
             EditBtn.UseVisualStyleBackColor = true;
-            EditBtn.Click += EditarCliente;
+            EditBtn.Click += UpdateClient;
             // 
             // CreateBtn
             // 
@@ -82,7 +82,7 @@ namespace DesktopApp
             CreateBtn.TabIndex = 5;
             CreateBtn.Text = "Agregar";
             CreateBtn.UseVisualStyleBackColor = true;
-            CreateBtn.Click += CrearCliente;
+            CreateBtn.Click += CreateClient;
             // 
             // ClientsView
             // 

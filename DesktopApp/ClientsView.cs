@@ -1,25 +1,20 @@
 using CsvHelper;
 using ECommerce;
-using System;
-using System;
-using System.Collections.Generic;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Windows.Forms;
 
 namespace DesktopApp
 {
     public partial class ClientsView : Form
     {
-        private readonly string rutaCsv = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "clientes.csv");
-        private List<Cliente> _clientes = new();
+        private const string pathCsv = "../../../../Datos/clientes.csv";
+        private List<Client> _clients = new();
+
         public ClientsView()
         {
             InitializeComponent();
             ConfigListView();
-            CargarDatosCsv();
+            LoadDataCsv();
         }
-
 
         private void ConfigListView()
         {
@@ -37,25 +32,108 @@ namespace DesktopApp
             verClientes.Columns.Add("Teléfono", 100);
         }
 
+        private void LoadDataCsv()
+        {
+            if (File.Exists(pathCsv))
+            {
+                using var reader = new StreamReader(pathCsv);
+                using var csv = new CsvReader(reader, CultureInfo.InvariantCulture);
+                _clients = csv.GetRecords<Client>().ToList();
+            }
+            LoadClients();
+        }
 
-        public void LoadClientes(List<Cliente> listaClientes)
+        private void SaveDataCsv()
+        {
+            using var writer = new StreamWriter(pathCsv);
+            using var csv = new CsvWriter(writer, CultureInfo.InvariantCulture);
+            csv.WriteRecords(_clients);
+        }
+
+        public void LoadClients()
         {
             verClientes.Items.Clear();
 
-            foreach (Cliente cliente in listaClientes)
+            foreach (var cliente in _clients)
             {
-                ListViewItem item = new ListViewItem(cliente.Documento);
+                ListViewItem item = new ListViewItem(cliente.Document);
 
-                item.SubItems.Add(cliente.Nombre);
-                item.SubItems.Add(cliente.Correo);
-                item.SubItems.Add(cliente.Telefono);
+                item.SubItems.Add(cliente.Name);
+                item.SubItems.Add(cliente.Mail);
+                item.SubItems.Add(cliente.Phone);
+
+                item.Tag = cliente;
 
                 verClientes.Items.Add(item);
             }
         }
+        private void CreateClient(object sender, EventArgs e)
+        {
+            using var clientForm = new clientForm(_clients);
 
+            if (clientForm.ShowDialog(this) == DialogResult.OK)
+            {
+                _clients = _clients.Append(clientForm.Client).ToList();
+                SaveDataCsv();
+                LoadClients();
+            }
+        }
 
+        private void UpdateClient(object sender, EventArgs e)
+        {
+            if (verClientes.SelectedItems.Count == 0 || verClientes.SelectedItems[0].Tag is not Client selectedClient)
+            {
+                MessageBox.Show(
+                    "Por favor, seleccione un cliente de la lista para editar.",
+                    "Atención",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+                return;
+            }
 
-        
+            using var clientForm = new clientForm(selectedClient);
+
+            if (clientForm.ShowDialog(this) == DialogResult.OK)
+            {
+                _clients = _clients
+                    .Select(c => c == selectedClient ? clientForm.Client : c)
+                    .ToList();
+
+                SaveDataCsv();
+                LoadClients();
+            }
+        }
+
+        private void DeleteClient(object sender, EventArgs e)
+        {
+            if (verClientes.SelectedItems.Count == 0 || verClientes.SelectedItems[0].Tag is not Client selectedClient)
+            {
+                MessageBox.Show(
+                    "Por favor, seleccione un cliente de la lista para eliminar.",
+                    "Atención",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+                return;
+            }
+
+            var confirm = MessageBox.Show(
+                $"¿Está seguro de eliminar el cliente '{selectedClient.Name}' con documento {selectedClient.Document}?",
+                "Confirmar eliminación",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question);
+
+            if (confirm == DialogResult.Yes)
+            {
+                // El taller exige preguntar: ¿se puede eliminar un cliente que ya compró?
+                // Aquí deberás validar si el documento existe en las ventas antes de ejecutar el .Where()
+
+                _clients = _clients
+                    .Where(c => c != selectedClient)
+                    .ToList();
+
+                SaveDataCsv();
+                LoadClients();
+            }
+        }
     }
 }
