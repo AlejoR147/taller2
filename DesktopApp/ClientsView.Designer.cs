@@ -55,7 +55,7 @@ namespace DesktopApp
             // 
             // DeleteBtn
             // 
-            DeleteBtn.Cursor = Cursors.No;
+            DeleteBtn.Cursor = Cursors.Hand;
             DeleteBtn.Location = new Point(413, 224);
             DeleteBtn.Name = "DeleteBtn";
             DeleteBtn.Size = new Size(75, 23);
@@ -66,6 +66,7 @@ namespace DesktopApp
             // 
             // EditBtn
             // 
+            EditBtn.Cursor = Cursors.Hand;
             EditBtn.Location = new Point(494, 224);
             EditBtn.Name = "EditBtn";
             EditBtn.Size = new Size(75, 23);
@@ -76,6 +77,7 @@ namespace DesktopApp
             // 
             // CreateBtn
             // 
+            CreateBtn.Cursor = Cursors.Hand;
             CreateBtn.Location = new Point(575, 224);
             CreateBtn.Name = "CreateBtn";
             CreateBtn.Size = new Size(75, 23);

@@ -6,9 +6,9 @@ namespace DesktopApp
 {
     public partial class ProductForm : Form
     {
-        public Product Product { get; private set; }
+        public Physical Product { get; private set; }
 
-        public ProductForm(Product? product = null)
+        public ProductForm(Physical? product = null)
         {
             InitializeComponent();
 
@@ -25,7 +25,7 @@ namespace DesktopApp
             {
                 Text = "Crear Producto";
                 titleLabel.Text = "Nuevo Producto";
-                Product = new Product();
+                Product = new Physical();
             }
         }
 
@@ -42,7 +42,7 @@ namespace DesktopApp
                 return;
             }
 
-            Product = new Product
+            Product = new Physical
             {
                 Name = nameTxt.Text.Trim(),
                 Price = priceInput.Value,
