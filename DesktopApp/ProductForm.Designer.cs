@@ -45,69 +45,70 @@ namespace DesktopApp
             // 
             titleLabel.AutoSize = true;
             titleLabel.Font = new Font("Segoe Script", 16F);
-            titleLabel.Location = new Point(85, 20);
+            titleLabel.Location = new Point(85, 23);
             titleLabel.Name = "titleLabel";
-            titleLabel.Size = new Size(190, 36);
+            titleLabel.Size = new Size(198, 35);
             titleLabel.TabIndex = 0;
             titleLabel.Text = "Nuevo Producto";
             // 
             // nameLabel
             // 
             nameLabel.AutoSize = true;
-            nameLabel.Location = new Point(40, 80);
+            nameLabel.Location = new Point(40, 91);
             nameLabel.Name = "nameLabel";
-            nameLabel.Size = new Size(54, 15);
+            nameLabel.Size = new Size(60, 17);
             nameLabel.TabIndex = 1;
             nameLabel.Text = "Nombre:";
-            // 
-            // nameTxt
-            // 
-            nameTxt.Location = new Point(115, 77);
-            nameTxt.Name = "nameTxt";
-            nameTxt.Size = new Size(200, 23);
-            nameTxt.TabIndex = 2;
             // 
             // priceLabel
             // 
             priceLabel.AutoSize = true;
-            priceLabel.Location = new Point(40, 125);
+            priceLabel.Location = new Point(40, 142);
             priceLabel.Name = "priceLabel";
-            priceLabel.Size = new Size(42, 15);
+            priceLabel.Size = new Size(47, 17);
             priceLabel.TabIndex = 3;
             priceLabel.Text = "Precio:";
+            // 
+            // stockLabel
+            // 
+            stockLabel.AutoSize = true;
+            stockLabel.Location = new Point(40, 193);
+            stockLabel.Name = "stockLabel";
+            stockLabel.Size = new Size(42, 17);
+            stockLabel.TabIndex = 5;
+            stockLabel.Text = "Stock:";
+            // 
+            // nameTxt
+            // 
+            nameTxt.Location = new Point(115, 87);
+            nameTxt.Name = "nameTxt";
+            nameTxt.Size = new Size(200, 25);
+            nameTxt.TabIndex = 2;
             // 
             // priceInput
             // 
             priceInput.DecimalPlaces = 2;
             priceInput.Increment = new decimal(new int[] { 100, 0, 0, 0 });
-            priceInput.Location = new Point(115, 122);
+            priceInput.Location = new Point(115, 138);
             priceInput.Maximum = new decimal(new int[] { 100000000, 0, 0, 0 });
             priceInput.Name = "priceInput";
-            priceInput.Size = new Size(200, 23);
+            priceInput.Size = new Size(200, 25);
             priceInput.TabIndex = 4;
-            // 
-            // stockLabel
-            // 
-            stockLabel.AutoSize = true;
-            stockLabel.Location = new Point(40, 170);
-            stockLabel.Name = "stockLabel";
-            stockLabel.Size = new Size(39, 15);
-            stockLabel.TabIndex = 5;
-            stockLabel.Text = "Stock:";
             // 
             // stockInput
             // 
-            stockInput.Location = new Point(115, 167);
+            stockInput.Location = new Point(115, 189);
             stockInput.Maximum = new decimal(new int[] { 1000000, 0, 0, 0 });
             stockInput.Name = "stockInput";
-            stockInput.Size = new Size(200, 23);
+            stockInput.Size = new Size(200, 25);
             stockInput.TabIndex = 6;
             // 
             // saveBtn
             // 
-            saveBtn.Location = new Point(115, 220);
+            saveBtn.Cursor = Cursors.Hand;
+            saveBtn.Location = new Point(115, 249);
             saveBtn.Name = "saveBtn";
-            saveBtn.Size = new Size(90, 30);
+            saveBtn.Size = new Size(90, 34);
             saveBtn.TabIndex = 7;
             saveBtn.Text = "Guardar";
             saveBtn.UseVisualStyleBackColor = true;
@@ -115,9 +116,10 @@ namespace DesktopApp
             // 
             // cancelBtn
             // 
-            cancelBtn.Location = new Point(225, 220);
+            cancelBtn.Cursor = Cursors.Hand;
+            cancelBtn.Location = new Point(225, 249);
             cancelBtn.Name = "cancelBtn";
-            cancelBtn.Size = new Size(90, 30);
+            cancelBtn.Size = new Size(90, 34);
             cancelBtn.TabIndex = 8;
             cancelBtn.Text = "Cancelar";
             cancelBtn.UseVisualStyleBackColor = true;
@@ -126,10 +128,10 @@ namespace DesktopApp
             // ProductForm
             // 
             AcceptButton = saveBtn;
-            CancelButton = cancelBtn;
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(7F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(360, 280);
+            CancelButton = cancelBtn;
+            ClientSize = new Size(360, 317);
             Controls.Add(cancelBtn);
             Controls.Add(saveBtn);
             Controls.Add(stockInput);

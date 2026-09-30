@@ -8,13 +8,13 @@ namespace DesktopApp
 {
     public partial class ProductsWiew : Form
     {
-        private static IEnumerable<Product> _products =
+        private static IEnumerable<Physical> _products =
         [
-            new Product { Name = "Laptop Gamer", Price = 3500.00m, Stock = 10 },
-            new Product { Name = "Mouse Inalámbrico", Price = 85.50m, Stock = 35 },
-            new Product { Name = "Teclado Mecánico", Price = 220.00m, Stock = 18 },
-            new Product { Name = "Monitor 24\" FHD", Price = 650.00m, Stock = 12 },
-            new Product { Name = "Auriculares Bluetooth", Price = 150.00m, Stock = 25 }
+            new Physical { Name = "Laptop Gamer", Price = 3500.00m, Stock = 10 },
+            new Physical { Name = "Mouse Inalámbrico", Price = 85.50m, Stock = 35 },
+            new Physical { Name = "Teclado Mecánico", Price = 220.00m, Stock = 18 },
+            new Physical { Name = "Monitor 24\" FHD", Price = 650.00m, Stock = 12 },
+            new Physical { Name = "Auriculares Bluetooth", Price = 150.00m, Stock = 25 }
         ];
 
         public ProductsWiew()
@@ -50,7 +50,7 @@ namespace DesktopApp
 
         private void EditProduct(object sender, EventArgs e)
         {
-            if (listView1.SelectedItems.Count == 0 || listView1.SelectedItems[0].Tag is not Product selectedProduct)
+            if (listView1.SelectedItems.Count == 0 || listView1.SelectedItems[0].Tag is not Physical selectedProduct)
             {
                 MessageBox.Show(
                     "Por favor, seleccione un producto de la lista para editar.",
@@ -72,7 +72,7 @@ namespace DesktopApp
 
         private void RemoveProduct(object sender, EventArgs e)
         {
-            if (listView1.SelectedItems.Count == 0 || listView1.SelectedItems[0].Tag is not Product selectedProduct)
+            if (listView1.SelectedItems.Count == 0 || listView1.SelectedItems[0].Tag is not Physical selectedProduct)
             {
                 MessageBox.Show(
                     "Por favor, seleccione un producto de la lista para eliminar.",

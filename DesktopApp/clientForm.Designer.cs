@@ -38,6 +38,7 @@
             // 
             // btnGuardar
             // 
+            btnGuardar.Cursor = Cursors.Hand;
             btnGuardar.Location = new Point(251, 254);
             btnGuardar.Name = "btnGuardar";
             btnGuardar.Size = new Size(75, 23);
@@ -48,6 +49,7 @@
             // 
             // btnCancelar
             // 
+            btnCancelar.Cursor = Cursors.Hand;
             btnCancelar.Location = new Point(138, 254);
             btnCancelar.Name = "btnCancelar";
             btnCancelar.Size = new Size(75, 23);
