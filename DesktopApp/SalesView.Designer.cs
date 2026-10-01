@@ -82,6 +82,7 @@ namespace DesktopApp
             button3.TabIndex = 5;
             button3.Text = "Agregar";
             button3.UseVisualStyleBackColor = true;
+            button3.Click += CreateSale;
             // 
             // SalesView
             // 
@@ -95,6 +96,7 @@ namespace DesktopApp
             Controls.Add(title);
             Name = "SalesView";
             Text = "ECommerce";
+            Load += SalesView_Load;
             ResumeLayout(false);
             PerformLayout();
         }

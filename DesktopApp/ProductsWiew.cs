@@ -1,6 +1,7 @@
 using CsvHelper;
-using CsvHelper.Configuration;
 using ECommerce;
+using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Windows.Forms;
@@ -9,75 +10,36 @@ namespace DesktopApp
 {
     public partial class ProductsWiew : Form
     {
-        private const string pathCsv = "../../../../Datos/productos.csv";
-        private List<IProduct> _products = new();
+        private readonly string pathCsv = "../../../../Datos/products.csv";
+        private List<Physical> _products = new();
 
         public ProductsWiew()
         {
             InitializeComponent();
-            ConfigListView();
             LoadDataCsv();
         }
-        private void ConfigListView()
-        {
-            listView1.View = View.Details;
-            listView1.FullRowSelect = true;
-            listView1.HideSelection = false;
-            listView1.GridLines = true;
-            listView1.MultiSelect = false;
 
-            listView1.Columns.Clear();
-            listView1.Columns.Add("ID", 50);
-            listView1.Columns.Add("Tipo", 70);
-            listView1.Columns.Add("Nombre", 150);
-            listView1.Columns.Add("Precio", 90);
-            listView1.Columns.Add("Categoría", 100);
-            listView1.Columns.Add("Peso/Tam.", 80);
-            listView1.Columns.Add("Stock", 60);
-            listView1.Columns.Add("Costo Envío", 90);
-            listView1.Columns.Add("Formato", 70);
-            listView1.Columns.Add("URL", 180);
-        }
         private void LoadDataCsv()
         {
-            //if (File.Exists(pathCsv))
-            //{
-            //    using var reader = new StreamReader(pathCsv);
-            //    using var csv = new CsvReader(reader, CultureInfo.InvariantCulture);
-            //    _products = csv.GetRecords<IProduct>().ToList();
-            //}
-            //LoadProducts();
-            
-      
-           if (!File.Exists(pathCsv)) return;
-
-            // Configuramos CsvHelper para ignorar las columnas que falten en el archivo
-            var config = new CsvConfiguration(CultureInfo.InvariantCulture)
+            if (File.Exists(pathCsv))
             {
-                MissingFieldFound = null,
-                HeaderValidated = null
-            };
-
-            using var reader = new StreamReader(pathCsv);
-            using var csv = new CsvReader(reader, config);
-
-            var records = new List<IProduct>();
-            csv.Read();
-            csv.ReadHeader();
-
-            while (csv.Read())
+                using var reader = new StreamReader(pathCsv);
+                using var csv = new CsvReader(reader, CultureInfo.InvariantCulture);
+                _products = csv.GetRecords<Physical>().ToList();
+            }
+            else
             {
-                if (csv.TryGetField<int>("Stock", out _))
+                _products = new List<Physical>
                 {
-                    records.Add(csv.GetRecord<Physical>());
-                }
-                else
-                {
-                    records.Add(csv.GetRecord<Digital>());
-                }
+                    new Physical { Id = 1, Name = "Laptop Gamer", Price = 3500.00m, Stock = 10 },
+                    new Physical { Id = 2, Name = "Mouse Inalámbrico", Price = 85.50m, Stock = 35 },
+                    new Physical { Id = 3, Name = "Teclado Mecánico", Price = 220.00m, Stock = 18 },
+                    new Physical { Id = 4, Name = "Monitor 24\" FHD", Price = 650.00m, Stock = 12 },
+                    new Physical { Id = 5, Name = "Auriculares Bluetooth", Price = 150.00m, Stock = 25 }
+                };
+                SaveDataCsv();
             }
 
-            _products = records;
             LoadProducts();
         }
         
@@ -110,6 +72,13 @@ namespace DesktopApp
             }
         }
 
+
+        private void SaveDataCsv()
+        {
+            using var writer = new StreamWriter(pathCsv);
+            using var csv = new CsvWriter(writer, CultureInfo.InvariantCulture);
+            csv.WriteRecords(_products);
+        }
 
         private void LoadProducts()
         {
@@ -221,7 +190,7 @@ namespace DesktopApp
             }
         }
 
-        private void OnCancelClick(object sender, EventArgs e)
+        private void ProductsWiew_Load(object sender, EventArgs e)
         {
 
         }
