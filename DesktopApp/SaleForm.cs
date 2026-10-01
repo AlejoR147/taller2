@@ -1,14 +1,7 @@
 ﻿using CsvHelper;
 using ECommerce;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Globalization;
-using System.Security.Policy;
-using System.Text;
-using System.Windows.Forms;
 
 namespace DesktopApp;
 
@@ -42,8 +35,6 @@ public partial class SaleForm : Form
         clientList.DataSource = _clients;
         clientList.DisplayMember = "Name";
     }
-   
-
 
     private void LoadProducts()
     {
@@ -88,8 +79,6 @@ public partial class SaleForm : Form
     }
 
 
-
-
     private void RefreshItems()
     {
         string[] lines = Sale.PurchasedItems
@@ -100,9 +89,6 @@ public partial class SaleForm : Form
 
         totalLabel.Text = $"Total: {Sale.Total}";
     }
-
-
-
 
     private void SaveSale(object sender, EventArgs e)
     {
