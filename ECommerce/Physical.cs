@@ -3,7 +3,7 @@
 public class Physical : IProduct
 {
     //Requeridos por contrato
-    public int Id { get; set; } = Random.Shared.Next();
+    public int Id { get; set; } = Random.Shared.Next(40,80);
     public string Name { get; set; } = string.Empty;
     public decimal Price { get; set; }
     public string Description { get; set; } = string.Empty;

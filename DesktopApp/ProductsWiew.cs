@@ -1,25 +1,27 @@
 using CsvHelper;
 using CsvHelper.Configuration;
 using ECommerce;
+
 using System.Globalization;
-using System.Linq;
-using System.Windows.Forms;
+
 
 namespace DesktopApp
 {
     public partial class ProductsWiew : Form
     {
-        private const string pathCsv = "../../../../Datos/productos.csv";
+        private readonly string pathCsv = "../../../../Datos/products.csv";
         private List<IProduct> _products = new();
 
         public ProductsWiew()
         {
+
             InitializeComponent();
             ConfigListView();
             LoadDataCsv();
         }
         private void ConfigListView()
         {
+            // Reglas de visualización obligatorias para la grilla[cite: 1]
             listView1.View = View.Details;
             listView1.FullRowSelect = true;
             listView1.HideSelection = false;
@@ -40,16 +42,7 @@ namespace DesktopApp
         }
         private void LoadDataCsv()
         {
-            //if (File.Exists(pathCsv))
-            //{
-            //    using var reader = new StreamReader(pathCsv);
-            //    using var csv = new CsvReader(reader, CultureInfo.InvariantCulture);
-            //    _products = csv.GetRecords<IProduct>().ToList();
-            //}
-            //LoadProducts();
-            
-      
-           if (!File.Exists(pathCsv)) return;
+            if (!File.Exists(pathCsv)) return;
 
             // Configuramos CsvHelper para ignorar las columnas que falten en el archivo
             var config = new CsvConfiguration(CultureInfo.InvariantCulture)
@@ -80,7 +73,7 @@ namespace DesktopApp
             _products = records;
             LoadProducts();
         }
-        
+
 
         private void SaveDataCsv()
         {
@@ -137,7 +130,7 @@ namespace DesktopApp
                 }
                 else if (product is Digital dig)
                 {
-                    item.SubItems.Add("-"); 
+                    item.SubItems.Add("-");
                     item.SubItems.Add("-");
                     item.SubItems.Add(dig.Format);
                     item.SubItems.Add(dig.Url);
@@ -221,9 +214,17 @@ namespace DesktopApp
             }
         }
 
-        private void OnCancelClick(object sender, EventArgs e)
-        {
+    }
+    public class ProductCsv
+    {
+        public int Id { get; set; }
+        public string Name { get; set; } = "";
+        public decimal Price { get; set; }
+        public string Description { get; set; } = "";
+        public string Category { get; set; } = "";
+        public decimal Weight { get; set; }
 
-        }
+        public int? Stock { get; set; }
+        public decimal? ShippingCost { get; set; }
     }
 }

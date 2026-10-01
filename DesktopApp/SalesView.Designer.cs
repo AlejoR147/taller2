@@ -62,6 +62,7 @@ namespace DesktopApp
             button1.TabIndex = 3;
             button1.Text = "Eliminar";
             button1.UseVisualStyleBackColor = true;
+            button1.Click += RemoveSale;
             // 
             // button2
             // 
@@ -72,6 +73,7 @@ namespace DesktopApp
             button2.TabIndex = 4;
             button2.Text = "Editar";
             button2.UseVisualStyleBackColor = true;
+            button2.Click += EditSale;
             // 
             // button3
             // 
@@ -82,6 +84,7 @@ namespace DesktopApp
             button3.TabIndex = 5;
             button3.Text = "Agregar";
             button3.UseVisualStyleBackColor = true;
+            button3.Click += CreateSale;
             // 
             // SalesView
             // 
@@ -95,6 +98,7 @@ namespace DesktopApp
             Controls.Add(title);
             Name = "SalesView";
             Text = "ECommerce";
+            Load += SalesView_Load;
             ResumeLayout(false);
             PerformLayout();
         }
