@@ -1,26 +1,53 @@
+using CsvHelper;
+using ECommerce;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Windows.Forms;
-using ECommerce;
 
 namespace DesktopApp
 {
     public partial class ProductsWiew : Form
     {
-        private static IEnumerable<Physical> _products =
-        [
-            new Physical { Name = "Laptop Gamer", Price = 3500.00m, Stock = 10 },
-            new Physical { Name = "Mouse Inalámbrico", Price = 85.50m, Stock = 35 },
-            new Physical { Name = "Teclado Mecánico", Price = 220.00m, Stock = 18 },
-            new Physical { Name = "Monitor 24\" FHD", Price = 650.00m, Stock = 12 },
-            new Physical { Name = "Auriculares Bluetooth", Price = 150.00m, Stock = 25 }
-        ];
+        private readonly string pathCsv = "../../../../Datos/products.csv";
+        private List<Physical> _products = new();
 
         public ProductsWiew()
         {
             InitializeComponent();
+            LoadDataCsv();
+        }
+
+        private void LoadDataCsv()
+        {
+            if (File.Exists(pathCsv))
+            {
+                using var reader = new StreamReader(pathCsv);
+                using var csv = new CsvReader(reader, CultureInfo.InvariantCulture);
+                _products = csv.GetRecords<Physical>().ToList();
+            }
+            else
+            {
+                _products = new List<Physical>
+                {
+                    new Physical { Id = 1, Name = "Laptop Gamer", Price = 3500.00m, Stock = 10 },
+                    new Physical { Id = 2, Name = "Mouse Inalámbrico", Price = 85.50m, Stock = 35 },
+                    new Physical { Id = 3, Name = "Teclado Mecánico", Price = 220.00m, Stock = 18 },
+                    new Physical { Id = 4, Name = "Monitor 24\" FHD", Price = 650.00m, Stock = 12 },
+                    new Physical { Id = 5, Name = "Auriculares Bluetooth", Price = 150.00m, Stock = 25 }
+                };
+                SaveDataCsv();
+            }
+
             LoadProducts();
+        }
+
+        private void SaveDataCsv()
+        {
+            using var writer = new StreamWriter(pathCsv);
+            using var csv = new CsvWriter(writer, CultureInfo.InvariantCulture);
+            csv.WriteRecords(_products);
         }
 
         private void LoadProducts()
@@ -95,6 +122,11 @@ namespace DesktopApp
                     .ToList();
                 LoadProducts();
             }
+        }
+
+        private void ProductsWiew_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

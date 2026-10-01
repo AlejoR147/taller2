@@ -38,7 +38,7 @@ namespace DesktopApp
             txtCorreo.Text = clientToEdit.Mail;
             txtTelefono.Text = clientToEdit.Phone;
 
-            
+
         }
 
         private void SaveClient(object sender, EventArgs e)
@@ -89,5 +89,9 @@ namespace DesktopApp
             this.Close();
         }
 
+        private void clientForm_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -1,5 +1,8 @@
-﻿using System;
+﻿using CsvHelper.Configuration.Attributes;
+using System;
 using System.Collections.Generic;
+using System.Globalization;
+using System.Reflection.Metadata.Ecma335;
 using System.Text;
 
 namespace ECommerce;
@@ -10,8 +13,10 @@ public class Sale
     public int Num { get; set; }
     public string DocClient { get; set; } = string.Empty;
     public List<SaleDetail> PurchasedItems { get; set; } = new();
-    public DateTime date;
-    public decimal Total => PurchasedItems.Sum(i => i.Subtotal);
+    public DateTime Date { get; set; } = DateTime.Now;
+    [Ignore]
+    public decimal Total { get; set; }
+    public string Products { get; set; } = string.Empty;
 
     public Sale()
     {
@@ -26,7 +31,14 @@ public class Sale
 
     public void AddProduct(IProduct product, int quantity)
     {
-        PurchasedItems = PurchasedItems.Append(new SaleDetail(product, quantity)).ToList();
-        //retornar algo? paradigma funcional creo
+        SaleDetail detail = new SaleDetail(product, quantity);
+        PurchasedItems = PurchasedItems.Append(detail).ToList();
+
+        // Cada vez que se agrega un producto, se actualizan el total y el texto
+        Total = PurchasedItems.Sum(d => d.Subtotal);
+        Products = string.Join(",", PurchasedItems.Select(p => $"{p.ProductName} x{p.Quantity}"));
+
+        
     }
+
 }
