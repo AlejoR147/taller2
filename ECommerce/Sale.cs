@@ -7,21 +7,20 @@ namespace ECommerce;
 public class Sale
 {
     public int Id { get; set; } = Random.Shared.Next();
-    public int Num { get; set; }
     public string DocClient { get; set; } = string.Empty;
     public List<SaleDetail> PurchasedItems { get; set; } = new();
-    public DateTime date;
+    public DateTime date { get; set; } = DateTime.Now;
     public decimal Total => PurchasedItems.Sum(i => i.Subtotal);
 
     public Sale()
     {
         
     }
-    public Sale(int num, string docCliente, List<SaleDetail> purchasedItems, decimal total)
+
+    public Sale(string docCliente, IProduct product, int quantity)
     {
-        Num = num;
         DocClient = docCliente;
-        PurchasedItems = purchasedItems;
+        AddProduct(product, quantity);
     }
 
     public void AddProduct(IProduct product, int quantity)

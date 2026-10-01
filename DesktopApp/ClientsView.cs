@@ -124,10 +124,7 @@ namespace DesktopApp
 
             if (confirm == DialogResult.Yes)
             {
-                // El taller exige preguntar: ¿se puede eliminar un cliente que ya compró?
-                // Aquí deberás validar si el documento existe en las ventas antes de ejecutar el .Where()
-
-                _clients = _clients
+                     _clients = _clients
                     .Where(c => c != selectedClient)
                     .ToList();
 
