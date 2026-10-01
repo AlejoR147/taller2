@@ -2,7 +2,7 @@
 public class Digital : IProduct
 {
     //Requeridos por contrato
-    public int Id { get; set; }
+    public int Id { get; set; } = Random.Shared.Next();
     public string Name { get; set; } = string.Empty;
     public decimal Price { get; set; }
     public string Description { get; set; } = string.Empty;
@@ -12,4 +12,8 @@ public class Digital : IProduct
     //Propios
     public string Format { get; set; } = string.Empty;
     public string Url { get; set; } = string.Empty;
+    public Digital()
+    {
+        
+    }
 }

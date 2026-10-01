@@ -30,19 +30,17 @@ namespace DesktopApp
         {
             title = new Label();
             listView1 = new ListView();
-            nameColumn = new ColumnHeader();
-            priceColumn = new ColumnHeader();
-            stockColumn = new ColumnHeader();
             removeBtn = new Button();
             editBtn = new Button();
             creationBtn = new Button();
+            button1 = new Button();
             SuspendLayout();
             // 
             // title
             // 
             title.AutoSize = true;
             title.Font = new Font("Segoe Script", 20F);
-            title.Location = new Point(215, 105);
+            title.Location = new Point(341, 71);
             title.Name = "title";
             title.Size = new Size(322, 42);
             title.TabIndex = 1;
@@ -50,36 +48,20 @@ namespace DesktopApp
             // 
             // listView1
             // 
-            listView1.Columns.AddRange(new ColumnHeader[] { nameColumn, priceColumn, stockColumn });
             listView1.FullRowSelect = true;
             listView1.GridLines = true;
-            listView1.Location = new Point(127, 246);
+            listView1.Location = new Point(36, 242);
             listView1.MultiSelect = false;
             listView1.Name = "listView1";
-            listView1.Size = new Size(471, 211);
+            listView1.Size = new Size(941, 211);
             listView1.TabIndex = 2;
             listView1.UseCompatibleStateImageBehavior = false;
             listView1.View = View.Details;
             // 
-            // nameColumn
-            // 
-            nameColumn.Text = "Nombre";
-            nameColumn.Width = 210;
-            // 
-            // priceColumn
-            // 
-            priceColumn.Text = "Precio";
-            priceColumn.Width = 135;
-            // 
-            // stockColumn
-            // 
-            stockColumn.Text = "Stock";
-            stockColumn.Width = 120;
-            // 
             // removeBtn
             // 
             removeBtn.Cursor = Cursors.Hand;
-            removeBtn.Location = new Point(523, 213);
+            removeBtn.Location = new Point(901, 210);
             removeBtn.Name = "removeBtn";
             removeBtn.Size = new Size(75, 26);
             removeBtn.TabIndex = 3;
@@ -90,7 +72,7 @@ namespace DesktopApp
             // editBtn
             // 
             editBtn.Cursor = Cursors.Hand;
-            editBtn.Location = new Point(442, 213);
+            editBtn.Location = new Point(820, 210);
             editBtn.Name = "editBtn";
             editBtn.Size = new Size(75, 26);
             editBtn.TabIndex = 4;
@@ -101,19 +83,31 @@ namespace DesktopApp
             // creationBtn
             // 
             creationBtn.Cursor = Cursors.Hand;
-            creationBtn.Location = new Point(361, 213);
+            creationBtn.Location = new Point(669, 210);
             creationBtn.Name = "creationBtn";
-            creationBtn.Size = new Size(75, 26);
+            creationBtn.Size = new Size(145, 26);
             creationBtn.TabIndex = 5;
-            creationBtn.Text = "Crear";
+            creationBtn.Text = "Crear Fisico";
             creationBtn.UseVisualStyleBackColor = true;
-            creationBtn.Click += CreateProduct;
+            creationBtn.Click += CreateProductPhysical;
+            // 
+            // button1
+            // 
+            button1.Cursor = Cursors.Hand;
+            button1.Location = new Point(507, 210);
+            button1.Name = "button1";
+            button1.Size = new Size(156, 26);
+            button1.TabIndex = 8;
+            button1.Text = "Crear Digital";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += CreateProductDigital;
             // 
             // ProductsWiew
             // 
             AutoScaleDimensions = new SizeF(7F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(717, 648);
+            ClientSize = new Size(1024, 532);
+            Controls.Add(button1);
             Controls.Add(creationBtn);
             Controls.Add(editBtn);
             Controls.Add(removeBtn);
@@ -129,11 +123,9 @@ namespace DesktopApp
 
         private Label title;
         private ListView listView1;
-        private ColumnHeader nameColumn;
-        private ColumnHeader priceColumn;
-        private ColumnHeader stockColumn;
         private Button removeBtn;
         private Button editBtn;
         private Button creationBtn;
+        private Button button1;
     }
 }

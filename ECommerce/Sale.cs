@@ -14,21 +14,17 @@ public class Sale
 
     [Ignore] // ¡CRÍTICO! Esto evita que CsvHelper explote al intentar guardar la lista
     public List<SaleDetail> PurchasedItems { get; set; } = new();
-
-    public DateTime Date { get; set; } = DateTime.Now;
-
-    // Le quitamos el [Ignore] al Total porque NECESITAMOS que se guarde en el CSV
-    public decimal Total { get; set; }
-
-    public string Products { get; set; } = string.Empty;
+    public DateTime date { get; set; } = DateTime.Now;
+    public decimal Total => PurchasedItems.Sum(i => i.Subtotal);
 
     public Sale()
     {
     }
 
-    public Sale(string docCliente)
+    public Sale(string docCliente, IProduct product, int quantity)
     {
         DocClient = docCliente;
+        AddProduct(product, quantity);
     }
 
     public void AddProduct(IProduct product, int quantity)
